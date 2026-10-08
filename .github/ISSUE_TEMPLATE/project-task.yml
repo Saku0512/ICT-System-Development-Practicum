@@ -1,0 +1,136 @@
+name: プロジェクト管理タスク
+description: 工程ごとの作業、担当、期限、成果物を管理するIssueを作成します。
+title: "[タスク] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        担当者はIssue作成画面の「Assignees」から選択してください。GitHubが割り当て可能なユーザーを表示します。
+
+  - type: dropdown
+    id: phase
+    attributes:
+      label: 工程
+      description: この作業が属する工程を選択してください。
+      options:
+        - 企画
+        - 設計
+        - 開発
+        - テスト
+        - 納品
+        - プロジェクト管理
+        - その他
+    validations:
+      required: true
+
+  - type: input
+    id: other_phase
+    attributes:
+      label: その他の工程名
+      description: 工程で「その他」を選んだ場合に入力してください。
+      placeholder: 例：環境構築
+    validations:
+      required: false
+
+  - type: input
+    id: wbs_id
+    attributes:
+      label: WBS番号
+      description: プロジェクト管理表のWBS番号があれば入力してください。
+      placeholder: 例：1.2.3
+    validations:
+      required: false
+
+  - type: textarea
+    id: purpose
+    attributes:
+      label: 目的・背景
+      description: この作業が必要な理由や、達成したいことを記載してください。
+      placeholder: |
+        何のために行う作業か
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    id: work
+    attributes:
+      label: 作業内容
+      description: 実施する作業を具体的に記載してください。
+      placeholder: |
+        - [ ] 作業1
+        - [ ] 作業2
+      value: |
+        - [ ]
+      render: markdown
+    validations:
+      required: true
+
+  - type: input
+    id: start_date
+    attributes:
+      label: 予定開始日
+      description: YYYY-MM-DD形式で入力してください。
+      placeholder: YYYY-MM-DD
+    validations:
+      required: false
+
+  - type: input
+    id: due_date
+    attributes:
+      label: 期限
+      description: YYYY-MM-DD形式で入力してください。
+      placeholder: YYYY-MM-DD
+    validations:
+      required: false
+
+  - type: textarea
+    id: deliverable
+    attributes:
+      label: 成果物
+      description: 作成・更新する資料、コード、テスト結果などを記載してください。
+      placeholder: |
+        - 成果物：
+        - 保存先またはリンク：
+    validations:
+      required: false
+
+  - type: textarea
+    id: done
+    attributes:
+      label: 完了条件
+      description: 何を満たせばこのIssueを完了にできるか記載してください。
+      placeholder: |
+        - [ ] 
+        - [ ] 
+      value: |
+        - [ ] 
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: 依存する作業・リスク
+      description: 前提となるIssue、懸念点、遅延時の影響などがあれば記載してください。
+      placeholder: なし
+    validations:
+      required: false
+
+  - type: textarea
+    id: progress
+    attributes:
+      label: 進捗メモ
+      description: 作業後、実施内容・次に行うこと・課題を日付とともに追記してください。
+      placeholder: |
+        | 日付 | 実施内容 | 次に行うこと・課題 |
+        |---|---|---|
+        | YYYY-MM-DD |  |  |
+      value: |
+        | 日付 | 実施内容 | 次に行うこと・課題 |
+        |---|---|---|
+        | YYYY-MM-DD |  |  |
+      render: markdown
+    validations:
+      required: false
